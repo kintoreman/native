@@ -13,12 +13,11 @@ const styles = StyleSheet.create({
 
 export const ClipScreen = ({navigation})=>{
   const user = useSelector(state => state.user);
-  const {clips}= user;
 
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-              data={clips}
+              data={user.clips}
               renderItem={({item}) => {
                   <ListItem
                   ImageUrl={item.urlToImage}

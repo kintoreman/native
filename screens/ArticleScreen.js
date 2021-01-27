@@ -13,16 +13,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ArticleScreen=({route})=>{
+export const ArticleScreen=(props)=>{
+  const {route} = props;
   const {article} = route.params;
 
+  const user = useSelector((state) => state.user);
+  
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.user);
-  const {clips} = user;
-
   const isClipped = ()=>{
-    return clips.some(clip =>clip.url === article.url)
+    return user.clips.some((clip) => clip.url === article.url)
   }
 
 
@@ -38,7 +38,7 @@ export const ArticleScreen=({route})=>{
         <SafeAreaView style={styles.container}>
           <ClipButton onPress={toggleClip} enabled={isClipped()} />
           <WebView 
-          source={{url: article.url}}
+          source={{uri: article.url}}
           startInLoadingState= {true}
           renderLoading={()=> <Loading />}
           />

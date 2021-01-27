@@ -31,7 +31,7 @@ export const HomeScreen=(props)=> {
       const response =await axios.get(URL);
       setArticles(response.data.articles)
     } catch (error){
-      console.log(error);
+      console.error(error);
     }
     setLoading(false);
   };
